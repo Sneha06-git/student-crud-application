@@ -19,13 +19,22 @@ btnAdd.addEventListener('click', function () {
     var degree = varDegree.value;
     var city = varCity.value;
 
-    addStudent(rollNo, name, degree, city);
+    if (rollNo == '' || name == '' || degree == '' || city == '') {
 
-    alert('Student added successfully');
+        alert('Please fill all the fields');
+        return;
 
-    clearForm();
+    }
 
-    displayStudents();
+    addStudent(rollNo, name, degree, city)
+        .then(() => {
+
+            alert('Student added successfully');
+
+            window.location.href = '/';
+
+        });
+
 });
 
 
@@ -33,45 +42,36 @@ btnSearch.addEventListener('click', function () {
 
     var name = varName.value;
 
-    var obj = searchStudent(name);
+    if (name == '') {
 
-    removeHighlight();
-
-    if (obj) {
-
-        varRollNo.value = obj.rollNo;
-        varName.value = obj.name;
-        varDegree.value = obj.degree;
-        varCity.value = obj.city;
-
-        highlightStudent(obj.rollNo);
+        alert('Please enter student name');
+        return;
 
     }
-    else {
 
-        alert('Student not found ...!');
-    }
-});
+    searchStudent(name)
+        .then(function (student) {
 
+            removeHighlight();
 
-btnDelete.addEventListener('click', function () {
+            if (student) {
 
-    var rollNo = varRollNo.value;
+                varRollNo.value = student.rollNo;
+                varName.value = student.name;
+                varDegree.value = student.degree;
+                varCity.value = student.city;
 
-    var obj = deleteStudent(rollNo);
+                highlightStudent(student.rollNo);
 
-    if (obj) {
+            }
+            else {
 
-        alert('Student deleted successfully');
+                alert('Student not found ...!');
 
-        clearForm();
+            }
 
-        displayStudents();
-    }
-    else {
+        });
 
-        alert('Roll No. not found ...!');
-    }
 });
 
 
@@ -82,24 +82,52 @@ btnModify.addEventListener('click', function () {
     var degree = varDegree.value;
     var city = varCity.value;
 
-    var obj = modifyStudent(rollNo, name, degree, city);
+    if (rollNo == '' || name == '' || degree == '' || city == '') {
 
-    if (obj) {
+        alert('Please fill all the fields');
+        return;
 
-        alert('Student modified successfully');
-
-        displayStudents();
     }
-    else {
 
-        alert('Roll No. not found ...!');
+    modifyStudent(rollNo, name, degree, city)
+        .then(function () {
+
+            alert('Student modified successfully');
+
+            window.location.href = '/';
+
+        });
+
+});
+
+
+btnDelete.addEventListener('click', function () {
+
+    var rollNo = varRollNo.value;
+
+    if (rollNo == '') {
+
+        alert('Please search a student first');
+        return;
+
     }
+
+    deleteStudent(rollNo)
+        .then(function () {
+
+            alert('Student deleted successfully');
+
+            window.location.href = '/';
+
+        });
+
 });
 
 
 btnClear.addEventListener('click', function () {
 
     clearForm();
+
     removeHighlight();
 
 });
@@ -111,28 +139,7 @@ function clearForm() {
     varName.value = '';
     varDegree.value = '';
     varCity.value = '';
-}
 
-
-function displayStudents() {
-
-    var data = '';
-
-    for (var i = 0; i < studentArr.length; i++) {
-
-        var student = studentArr[i];
-
-        data += `
-            <tr data-rollno="${student.rollNo}">
-                <td>${student.rollNo}</td>
-                <td>${student.name}</td>
-                <td>${student.degree}</td>
-                <td>${student.city}</td>
-            </tr>
-        `;
-    }
-
-    studentTableBody.innerHTML = data;
 }
 
 
@@ -152,8 +159,11 @@ function highlightStudent(rollNo) {
             });
 
             break;
+
         }
+
     }
+
 }
 
 
@@ -164,5 +174,7 @@ function removeHighlight() {
     for (var i = 0; i < rows.length; i++) {
 
         rows[i].classList.remove('highlight-row');
+
     }
+
 }

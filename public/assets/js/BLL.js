@@ -1,65 +1,66 @@
-var studentArr = [];
-
 function addStudent(rollNo, name, degree, city) {
 
-    var student = {
-        rollNo: rollNo,
-        name: name,
-        degree: degree,
-        city: city
-    };
+    return fetch('/save', {
 
-    studentArr.push(student);
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+
+        body:
+            'rollNo=' + encodeURIComponent(rollNo) +
+            '&name=' + encodeURIComponent(name) +
+            '&degree=' + encodeURIComponent(degree) +
+            '&city=' + encodeURIComponent(city)
+
+    });
+
 }
 
 
 function searchStudent(name) {
 
-    function matchStudentOnBasisOfName(student) {
-        return student.name.toLowerCase() == name.toLowerCase();
-    }
+    return fetch('/search?name=' + encodeURIComponent(name))
+        .then(response => response.json());
 
-    var obj = studentArr.find(matchStudentOnBasisOfName);
-
-    return obj;
-}
-
-
-function deleteStudent(rollNo) {
-
-    function matchStudentOnTheBasisOfRollNo(student) {
-        return student.rollNo == rollNo;
-    }
-
-    var arrIndex = studentArr.findIndex(matchStudentOnTheBasisOfRollNo);
-
-    if (arrIndex != -1) {
-        studentArr.splice(arrIndex, 1);
-        return true;
-    }
-    else {
-        return false;
-    }
 }
 
 
 function modifyStudent(rollNo, name, degree, city) {
 
-    function matchStudentOnTheBasisOfRollNo(student) {
-        return student.rollNo == rollNo;
-    }
+    return fetch('/modify', {
 
-    var arrIndex = studentArr.findIndex(matchStudentOnTheBasisOfRollNo);
+        method: 'POST',
 
-    if (arrIndex != -1) {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
 
-        studentArr[arrIndex].name = name;
-        studentArr[arrIndex].degree = degree;
-        studentArr[arrIndex].city = city;
+        body:
+            'rollNo=' + encodeURIComponent(rollNo) +
+            '&name=' + encodeURIComponent(name) +
+            '&degree=' + encodeURIComponent(degree) +
+            '&city=' + encodeURIComponent(city)
 
-        return true;
-    }
-    else {
-        return false;
-    }
+    });
+
+}
+
+
+function deleteStudent(rollNo) {
+
+    return fetch('/delete', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+
+        body:
+            'rollNo=' + encodeURIComponent(rollNo)
+
+    });
+
 }
