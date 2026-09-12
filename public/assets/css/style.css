@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #f4f6f9;
+    font-family: Arial, sans-serif;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.project-header {
+    background: #212529;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.project-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.project-header p {
+    margin: 8px 0 0;
+    font-size: 16px;
+    color: #ced4da;
+}
+
+
+/* =========================
+   Cards
+========================= */
+
+.student-form-card,
+.student-list-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.student-form-card {
+    max-width: 850px;
+    margin: auto;
+}
+
+.student-list-card {
+    margin-top: 35px;
+}
+
+
+/* =========================
+   Card Header
+========================= */
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+    padding: 18px 25px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.card-body {
+    padding: 25px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-control {
+    min-height: 45px;
+    border-radius: 7px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+
+/* =========================
+   Buttons
+========================= */
+
+.button-section {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.button-section .btn {
+    min-width: 125px;
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   Student Table
+========================= */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: #212529;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    padding: 13px;
+}
+
+.table tbody td {
+    text-align: center;
+    padding: 12px;
+}
+
+
+/* =========================
+   Search Highlight
+========================= */
+
+.highlight-row {
+    font-weight: 600;
+}
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 576px) {
+
+    .project-header h1 {
+        font-size: 25px;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .button-section {
+        flex-direction: column;
+    }
+
+    .button-section .btn {
+        width: 100%;
+    }
+}
