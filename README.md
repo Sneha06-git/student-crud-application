@@ -75,3 +75,6 @@ Student-Management-System/
 ├── package-lock.json
 ├── README.md
 └── .gitignore
+
+## Note
+The project currently uses a local mongoDB database. The application is not hosted yet
