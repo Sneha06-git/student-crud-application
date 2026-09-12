@@ -47,6 +47,10 @@ The application stores the following information:
 - MongoDB
 - Mongoose
 
+
+## Note
+The project currently uses a local mongoDB database. The application is not hosted yet
+
 ## Project Structure
 
 ```text
@@ -76,5 +80,3 @@ Student-Management-System/
 ├── README.md
 └── .gitignore
 
-## Note
-The project currently uses a local mongoDB database. The application is not hosted yet
